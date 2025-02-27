@@ -1,4 +1,5 @@
 import express from "express";
+import "express-async-errors";
 import { json } from "body-parser";
 import { currentUserRouter } from "./routes/current-user";
 import { signinRouter } from "./routes/signin";
@@ -15,7 +16,9 @@ app.use(signinRouter);
 app.use(signoutRouter);
 app.use(signupRouter);
 
-app.all("*", () => {
+// Assume there is an async error, throw does not handle it properly
+// use next or install the express-async-errors (refer to the express doc)
+app.all("*", async () => {
   throw new NotFoundError();
 });
 
