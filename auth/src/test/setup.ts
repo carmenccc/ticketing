@@ -6,9 +6,13 @@ let mongo: any;
 
 // A hook function run before all test execution
 beforeAll(async () => {
+  // Set environment variables
+  process.env.JWT_KEY = "asjskdla";
+
   // Startup MongoMemoryServer and have mongoose connect to it
   mongo = new MongoMemoryServer();
-  const mongoUri = await mongo.getUri();
+  await mongo.start();
+  const mongoUri = mongo.getUri();
 
   await mongoose.connect(mongoUri);
 });
