@@ -17,7 +17,7 @@ app.use(json());
 app.use(
   cookieSession({
     signed: false, // disable cookieSession encryption for compatibility among languages
-    secure: true, // only allow https request
+    secure: process.env.NODE_ENV !== "test", // only allow https request (except for test environment)
   })
 );
 
