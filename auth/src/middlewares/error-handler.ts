@@ -20,6 +20,6 @@ export const errorHandler: ErrorRequestHandler = (
   }
 
   res.status(400).send({
-    errors: [{ message: "Unknown error" }],
+    errors: [{ message: err.message }],
   });
 };
